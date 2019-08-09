@@ -20,18 +20,22 @@ class App extends React.Component {
             }, 400);
           }}
         >
-          {({ isSubmitting }) => (
+          {({ isSubmitting, isValid }) => (
             <Form>
+              <label htmlFor="firstName">First Name</label>
               <Field name="firstName" validate={this.validateFirstName} />
               <ErrorMessage name="firstName" component="div" />
+              <label htmlFor="lastName">Last Name</label>
               <Field name="lastName" validate={this.validateLastName} />
               <ErrorMessage name="lastName" component="div" />
+              <label htmlFor="email">Email</label>
               <Field type="email" name="email" validate={emailValidator} />
               <ErrorMessage name="email" component="div" />
+              <label htmlFor="iban">IBAN</label>
               <Field type="iban" name="iban" />
               <ErrorMessage name="iban" component="div" />
-              <button type="submit" disabled={isSubmitting}>
-                Submit
+              <button type="submit" disabled={isValid || isSubmitting}>
+                Submit!
               </button>
             </Form>
           )}
