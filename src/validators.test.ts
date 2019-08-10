@@ -37,4 +37,43 @@ describe("validators", () => {
       expect(validators.email("b.com")).toBeDefined();
     });
   });
+
+  describe("iban", () => {
+    beforeEach(() => {
+      fetchMock.resetMocks();
+    });
+    test("rejects if iban is empty", () => {
+      expect(validators.IBAN("")).rejects.toBe("IBAN is required");
+    });
+
+    test("rejects if unable to validate through the server", async () => {
+      fetchMock.mockResponseOnce(JSON.stringify({ valid: true }), {
+        status: 400,
+      });
+      expect(validators.IBAN("3", 3)).rejects.toContain(
+        "There was a problem validating your IBAN. Please try again."
+      );
+    });
+
+    test("rejects if invalid IBAN", async () => {
+      fetchMock.mockResponseOnce(JSON.stringify({ valid: false }));
+      expect(validators.IBAN("3")).rejects.toContain(
+        "Please enter a valid IBAN"
+      );
+    });
+
+    test("resolves if valid IBAN", async () => {
+      fetchMock.mockResponseOnce(JSON.stringify({ valid: true }));
+      expect(validators.IBAN("3")).resolves.toBe(undefined);
+    });
+
+    test("re-attempts to validate IBAN", async () => {
+      fetchMock
+        .mockResponseOnce(JSON.stringify({ valid: true }), { status: 400 })
+        .mockResponseOnce(JSON.stringify({ valid: true }), { status: 400 })
+        .mockResponseOnce(JSON.stringify({ valid: true }), { status: 400 })
+        .mockResponseOnce(JSON.stringify({ valid: true }));
+      expect(validators.IBAN("3")).resolves.toBe(undefined);
+    });
+  });
 });

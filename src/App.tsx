@@ -5,13 +5,18 @@ import "./App.css";
 import * as validators from "./validators";
 import FormData from "./FormData";
 
-const initialValues = { firstName: "", lastName: "", email: "", iban: "" };
-
-type Values = typeof initialValues;
-
 message.config({
   duration: 3,
 });
+
+const initialValues = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  iban: "",
+} as const;
+
+type Values = typeof initialValues;
 
 class App extends React.Component {
   validateFirstName = validators.nameValidatorGenerator("First");
