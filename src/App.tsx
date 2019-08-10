@@ -3,6 +3,7 @@ import { ErrorMessage, Field, FieldProps, Formik, FormikActions } from "formik";
 import React from "react";
 import "./App.css";
 import * as validators from "./validators";
+import FormData from "./FormData";
 
 const initialValues = { firstName: "", lastName: "", email: "", iban: "" };
 
@@ -53,7 +54,7 @@ class App extends React.Component {
             onSubmit={this.onSubmit}
             validateOnChange={false}
           >
-            {({ isSubmitting, isValid, handleSubmit }) => (
+            {({ isSubmitting, values, handleSubmit }) => (
               <Form layout="vertical" onSubmit={handleSubmit}>
                 <Form.Item label="First Name">
                   <Field
@@ -113,6 +114,7 @@ class App extends React.Component {
                 >
                   Submit!
                 </Button>
+                <FormData {...values} />
               </Form>
             )}
           </Formik>
