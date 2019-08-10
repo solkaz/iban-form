@@ -18,6 +18,8 @@ const initialValues = {
 
 type Values = typeof initialValues;
 
+const cardStyle = { width: "50%", margin: "0 auto" } as const;
+
 class App extends React.Component {
   validateFirstName = validators.nameValidatorGenerator("First");
   validateLastName = validators.nameValidatorGenerator("Last");
@@ -52,7 +54,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="app">
-        <Card style={{ width: "50%", margin: "0 auto" }}>
+        <Card style={cardStyle}>
           <h1>Register Account</h1>
           <Formik
             initialValues={initialValues as any}
