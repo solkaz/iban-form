@@ -13,7 +13,7 @@ describe("validators", () => {
         expect(validator("1")).toBeDefined();
         expect(validator("john-jacob")).toBeDefined();
         expect(validator("ab3")).toBeDefined();
-        expect(validator("*!ßæcö")).toBeDefined();
+        expect(validator("\u{1F46A}")).toBeDefined();
       });
 
       test("accepts valid names", () => {
