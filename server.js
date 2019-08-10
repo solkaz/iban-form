@@ -18,7 +18,7 @@ const router = express.Router();
 
 let count = 0;
 
-router.post("/", (req, res, next) => {
+router.post("/", bodyParser.json(), (req, res, next) => {
   const { iban } = req.body;
   try {
     if (++count % 3 === 0) {
@@ -32,11 +32,9 @@ router.post("/", (req, res, next) => {
     const valid = ibanLib.isValid(iban);
     res.json({ valid });
   } catch (e) {
-    res
-      .status(500)
-      .json({
-        message: e.message || "Something went wrong. Please, try again",
-      });
+    res.status(500).json({
+      message: e.message || "Something went wrong. Please, try again",
+    });
   }
 });
 
