@@ -1,5 +1,15 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Getting started
+
+Install dependencies with `yarn`:
+
+```sh
+yarn install
+```
+
+Start the IBAN validation server with `yarn start-server`, and then start the development server with `yarn start`.
+
 ## Available Scripts
 
 In the project directory, you can run:
