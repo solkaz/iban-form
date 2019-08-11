@@ -20,6 +20,10 @@ type Values = typeof initialValues;
 
 const cardStyle = { width: "50%", margin: "0 auto" } as const;
 
+function FormInputLabel({ label }: { label: string }) {
+  return <b>{label}</b>;
+}
+
 class App extends React.Component {
   validateFirstName = validators.nameValidatorGenerator("First");
   validateLastName = validators.nameValidatorGenerator("Last");
@@ -63,7 +67,7 @@ class App extends React.Component {
           >
             {({ isSubmitting, values, handleSubmit }) => (
               <Form layout="vertical" onSubmit={handleSubmit}>
-                <Form.Item label="First Name">
+                <Form.Item label={<FormInputLabel label="First Name" />}>
                   <Field
                     name="firstName"
                     validate={this.validateFirstName}
@@ -76,7 +80,7 @@ class App extends React.Component {
                   />
                 </Form.Item>
 
-                <Form.Item label="Last Name">
+                <Form.Item label={<FormInputLabel label="Last Name" />}>
                   <Field
                     name="lastName"
                     validate={this.validateLastName}
@@ -89,7 +93,7 @@ class App extends React.Component {
                   />
                 </Form.Item>
 
-                <Form.Item label="Email">
+                <Form.Item label={<FormInputLabel label="Email" />}>
                   <Field
                     name="email"
                     validate={validators.email}
@@ -102,7 +106,7 @@ class App extends React.Component {
                   />
                 </Form.Item>
 
-                <Form.Item label="IBAN">
+                <Form.Item label={<FormInputLabel label="IBAN" />}>
                   <Field
                     name="iban"
                     validate={validators.IBAN}
