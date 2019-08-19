@@ -1,5 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## About
+
+This project was a take-home assignment given to me by a company for their interviewing process (they did not hire me). It is a simple form that includes asynchronous validation to validate an IBAN, built with [`create-react-app`](https://create-react-app.dev), [TypeScript](https://www.typescriptlang.org), [Formik](https://jaredpalmer.com/formik), and [Ant Design](https://ant.design).
+
 ## Getting started
 
 Install dependencies with `yarn`:
